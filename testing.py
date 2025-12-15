@@ -112,4 +112,4 @@ seed = int(sys.argv[1]) if len(sys.argv) > 1 else random.randint(0, 1000)
 
 # The command used to generate bigtest.json
 for n in [16, 21, 26, 50, 100]:
-    test_server_network_scheduler(servers, networks, schedulers, seed, n, repeats=20, f=round(math.sqrt(n)))
+    test_server_network_scheduler(servers, networks, schedulers, seed, n, repeats=20, f=min(round(math.sqrt(n)), n//5))
