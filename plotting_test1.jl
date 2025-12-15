@@ -19,10 +19,8 @@ target_triplets = [
 # Node counts
 node_counts = [16, 21, 26, 50, 100]
 
-# Dictionary to store series data
 series_data = Dict()
 
-# Extract data for each triplet
 for triplet in target_triplets
     series_data[triplet] = Dict("nodes" => [], "messages" => [])
 
@@ -49,7 +47,6 @@ ax = Axis(fig[1, 1],
     title = "Consensus Performance Comparison with constant fault rate √n"
 )
 
-# Plot each series
 for (i, triplet) in enumerate(target_triplets)
     label = "$(triplet[1]) - $(triplet[2]) - $(triplet[3])"
     lines!(ax,
@@ -65,11 +62,10 @@ for (i, triplet) in enumerate(target_triplets)
     )
 end
 
-# Add legend
 axislegend(ax, position = :lt)
 
 # Display the figure
 fig
 
-# Optionally save the figure
+# save the figure
 # save("consensus_plot.png", fig)

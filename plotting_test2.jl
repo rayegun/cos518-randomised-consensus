@@ -1,7 +1,6 @@
 using CairoMakie
 using JSON
 
-# Read JSON file
 data = JSON.parsefile("fault_scaling.json")
 
 # Define the triplets we want to plot
@@ -19,10 +18,8 @@ target_triplets = [
 # Node counts
 bad_counts = 1:7
 
-# Dictionary to store series data
 series_data = Dict()
 
-# Extract data for each triplet
 for triplet in target_triplets
     series_data[triplet] = Dict("bad nodes" => [], "rounds" => [])
 
@@ -30,7 +27,6 @@ for triplet in target_triplets
         # Get results for this node count
         results = data[n]
 
-        # Find the matching triplet
         for result in results
             if (result["server"], result["network"], result["scheduler"]) == triplet
                 push!(series_data[triplet]["bad nodes"], bad_counts[n])
@@ -49,7 +45,6 @@ ax = Axis(fig[1, 1],
     title = "Consensus Performance Comparison - Bad Nodes"
 )
 
-# Plot each series
 for (i, triplet) in enumerate(target_triplets)
     label = "$(triplet[1]) - $(triplet[2]) - $(triplet[3])"
     lines!(ax,
@@ -65,11 +60,10 @@ for (i, triplet) in enumerate(target_triplets)
     )
 end
 
-# Add legend
 axislegend(ax, position = :lt)
 
 # Display the figure
 fig
 
-# Optionally save the figure
+# save the figure
 # save("consensus_plot.png", fig)
