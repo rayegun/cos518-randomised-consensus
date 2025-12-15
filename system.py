@@ -64,7 +64,7 @@ class System:
             self.servers[i] = Server(
                 self.network,
                 i,
-                self.randomness.randint(0, 1),
+                self.randomness.choice(self.possible_values)
                 self.n,
                 self.f,
                 self.randomness,
