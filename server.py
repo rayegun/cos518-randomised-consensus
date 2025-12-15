@@ -50,7 +50,7 @@ class AbstractServer:
 
 class Server(AbstractServer):
     def __init__(
-        self, network=None, id=-1, val=-1, n=0, f=0, randomness=None, *args, **kwargs
+        self, network=None, id=-1, val=-1, n=0, f=0, randomness=None, possible_values=[0, 1], *args, **kwargs
     ):
         # Default args: A hack so that __init__() with no args works
         self.network = network
@@ -77,7 +77,7 @@ class Server(AbstractServer):
         self.histogram = dict()
 
         # Hack FIXME
-        self.possible_values = [0, 1]
+        self.possible_values = possible_values
 
         # debug info:
         self.dead_messages = 0

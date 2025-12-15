@@ -27,7 +27,7 @@ def honest():
 
 
 def test_server_network_scheduler(
-    servers, networks, schedulers, seed, num_servers, repeats=1, f=None
+    servers, networks, schedulers, seed, num_servers, repeats=1, f=None, possible_values=[0, 1]
 ):
     flip_chance = 0.5
     n = num_servers
@@ -36,7 +36,7 @@ def test_server_network_scheduler(
     cutoff = scientific_notation(n, cutoff_order)
 
     def run_test(server, network, scheduler):
-        # print(f"{n}: {server}, {network}, {scheduler}", file=stderr)
+        print(f"{n}: {server}, {network}, {scheduler}", file=stderr)
         result = dict()
         result["server"] = server.__name__
         result["network"] = network.__name__
@@ -59,6 +59,7 @@ def test_server_network_scheduler(
                 cutoff,
                 evil_class=server,
                 flip_chance=flip_chance,
+                possible_values=possible_values
             )
 
             x = sys.run_undistributed()
@@ -87,16 +88,16 @@ def multitest(num, servers, networks, schedulers):
 
 servers = [
     Server,
-    EvilServer,
-    RandomServer,
-    SilentServer,
+    # EvilServer,
+    # RandomServer,
+    # SilentServer,
 ]
 
 networks = [
     Network
 ]
 
-schedulers = [Scheduler, EvilFirstScheduler]
+schedulers = [Scheduler] # EvilFirstScheduler
 
 # A smaller set of behaviours - the "interesting set", informally
 servers_demo = [Server, EvilServer, RandomServer]
@@ -111,5 +112,6 @@ seed = int(sys.argv[1]) if len(sys.argv) > 1 else random.randint(0, 1000)
 # test_server_network_scheduler(servers, networks, schedulers, seed, 6, repeats=1)
 
 # The command used to generate bigtest.json
-for n in [16, 21, 26, 50, 100]:
-    test_server_network_scheduler(servers, networks, schedulers, seed, n, repeats=20, f=round(math.sqrt(n)))
+
+for n in [[0, 1], [0,1,2], [0,1,2,3], [0,1,2,3,4]]:
+    test_server_network_scheduler(servers, networks, schedulers, seed, 15, repeats=50, possible_values=n)

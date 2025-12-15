@@ -1,4 +1,5 @@
 [
+[
   {
     "server": "Server",
     "network": "Network",
@@ -971,7 +972,7 @@
     "rounds": 51.0,
     "messages": 244.8
   }
-]
+],
 [
   {
     "server": "Server",
@@ -1945,7 +1946,7 @@
     "rounds": 124.2,
     "messages": 1306.8
   }
-]
+],
 [
   {
     "server": "Server",
@@ -2919,7 +2920,7 @@
     "rounds": 353.40000000000003,
     "messages": 5836.800000000001
   }
-]
+],
 [
   {
     "server": "Server",
@@ -3893,7 +3894,7 @@
     "rounds": 975.0,
     "messages": 22050.0
   }
-]
+],
 [
   {
     "server": "Server",
@@ -4867,4 +4868,5 @@
     "rounds": 1184.4,
     "messages": 34070.399999999994
   }
+]
 ]

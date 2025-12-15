@@ -6,7 +6,7 @@ from network import *
 class System:
     # The idea is that different systems will reimplement the `run_undistributed` and `spawn_servers` functions in more hostile ways; crashing servers, initialising weird values, etc.
     def __init__(
-        self, n, f, network, scheduler, randomness, cutoff=0, *args, **kwargs
+        self, n, f, network, scheduler, randomness, cutoff=0, possible_values=[0, 1], *args, **kwargs
     ) -> None:
         # assert 5 * f < n  # Threshold for correctness guarantee
         self.step_count = 0
@@ -19,7 +19,7 @@ class System:
         self.evil_ids = set()
         self.randomness = randomness
         self.cutoff = cutoff
-
+        self.possible_values = possible_values
         self.spawn_servers()
 
     def print_state(self):
@@ -68,6 +68,7 @@ class System:
                 self.n,
                 self.f,
                 self.randomness,
+                possible_values=self.possible_values
             )
 
     def on_new_round(self):
@@ -124,6 +125,7 @@ class EvilSystem(System):
                     self.n,
                     self.f,
                     self.randomness,
+                    possible_values=self.possible_values
                 )
 
             else:
@@ -134,6 +136,7 @@ class EvilSystem(System):
                     self.n,
                     self.f,
                     self.randomness,
+                    possible_values=self.possible_values
                 )
 
 

@@ -1,2 +1,2 @@
 #!/bin/bash
-python testing.py $1|jq '.[]|select(.failures > 0)'
+/opt/homebrew/bin/python3 testing.py
